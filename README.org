@@ -1,0 +1,3 @@
+Common Lisp exercises on recursion and the Design Recipe.
+
+See [[file:recursion-exercises.org][Programming Exercises in Recursion]]

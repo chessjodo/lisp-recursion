@@ -1,0 +1,155 @@
+#+TITLE: Programming Exercises in Recursion
+
+* Lists
+Think of a list as being either =nil= or else built with =cons=. If it is built
+with =cons= then you may take its =first= element and its =rest=. If a list
+contains numbers then the =first= of a list will be a number and the =rest=
+will be a list of numbers. Examples:
+#+begin_src lisp :eval no
+(setf ns '(3 4 5 6))
+(first ns) ; => 3
+(rest ns) ; => (4 5 6)
+
+(setf ns '(88))
+(first ns) ; => 88
+(rest ns) ; => ()
+#+end_src
+
+You can test whether something is a =nil= or a =cons= using =null= and =consp=
+respectively.
+#+begin_src lisp :eval no
+(null ns) ; => nil
+(null (rest ns)) ; => t
+#+end_src
+
+Bearing this in mind, design recursive functions which do the following when
+given a list of (integer) numbers.
+
+1. Find the sum of all numbers in the list.
+2. Return the list with elements which are double those of the input list.
+3. Find the largest number in the list.
+4. Return the sub-list of the input list which contains only positive numbers.
+5. Design a merge function which consumes two lists of numbers, both sorted in
+   ascending order. It produces a single sorted list of numbers that contains
+   all the numbers on both inputs lists. A number occurs in the output as
+   many times as it occurs on the two input lists together.
+
+* The counting numbers
+We can do recursion on the counting numbers, ${0, 1, 2, 3, ...}$ in a similar
+way.
+
+A counting number is either zero =0= or it is the successor of a counting
+number. So =3= is the successor of =2= and =1= is the successor of =0=. If a
+counting number *is* a successor then it *has* a predecessor.
+
+Let's design a function for Santa Claus that will give him a list of /ho's/ of
+whatever length he wishes, e.g.
+: (hos 3) ; => '(ho ho ho)
+
+First a template
+#+begin_src lisp :eval no
+(defun hos (n)
+  ...)
+#+end_src
+
+The input is a counting number so it's either zero or a successor.
+#+begin_src lisp :eval no
+(defun hos (n)
+  (cond ((zerop n) ...)
+        ((plusp n) ...)))
+#+end_src
+
+If it's zero then we return the empty list.
+#+begin_src lisp :eval no
+(defun hos (n)
+  (cond ((zerop n) ())
+        ((plusp n) ...)))
+#+end_src
+
+If it's not zero then we can take its successor.
+#+begin_src lisp :eval no
+(defun hos (n)
+  (cond ((zerop n) ())
+        ((plusp n) ... (1- n) ...)))
+#+end_src
+
+Its successor is a counting number so we can apply =ho= to it.
+#+begin_src lisp :eval no
+(defun hos (n)
+  (cond ((zerop n) ())
+        ((plusp n) ... (hos (1- n)) ...)))
+#+end_src
+
+The expression =(ho (1- n))= evaluates to a list of /ho's/ one shorter than we
+need so we just need to cons one more =ho= onto it and we're done
+
+#+begin_src lisp :results none
+(defun hos (n)
+  (cond ((zerop n) ())
+        ((plusp n) (cons 'ho (hos (1- n))))))
+#+end_src
+
+1. Generalise =hos= to a function that can produce a given number of /ha's/ or
+   /hi's/ or indeed any other symbol desired.
+2. Design a function that returns a list of squares of a given length
+   starting from a given number.
+   : (squares 8 4) ; => (64 81 100 121)
+3. Design =take= which takes a list and a counting number, =n= and returns the list
+   consisting of the first =n= elements of the input list
+4. Design =drop= which takes a list and a counting number, =n= and returns the list
+   gotten by dropping the first =n= elements of the input list.
+
+* Binary Trees
+Let's define a binary tree (BT) (containing elements of type =fixnum=) to be
+either a =node= or =nil=. The definition of the =node= structure now includes
+typing information.
+#+begin_src lisp :results none
+(deftype bt () '(or node null))
+
+(defstruct node
+  (value  nil :type fixnum)
+  (left   nil :type bt)
+  (right  nil :type bt))
+#+end_src
+
+A [[https://en.wikipedia.org/wiki/Binary_search_tree][binary search tree]] (BST) is a binary tree with the constraint that every node
+has a =value= which is greater than each of the values in its left sub-tree and
+less than each of the values in its right sub-tree.
+
+A /path/ is a list containing only the symbols =left= and =right=, and ending
+with the symbol =t= e.g.
+: '(left left right left t)
+
+1. Design a function which takes a list of integers and returns a BST
+   containing those integers.
+2. Design a function which takes a number and a BT and determines whether the
+   number is present in the BT.
+3. Design a function which takes a number and a BST and determines whether the
+   number is present in the BST.
+4. Design a function which takes a number and a BST and returns a /path/
+   describing the route from the root of the BST to the number if the number is
+   present in the BST, or =nil= if it is not.
+5. Design a function which takes a number and a BT and returns a /path/
+   describing the route from the root of the BT to the number if the number is
+   present in the BT, or =nil= if it is not.
+6. Design a function which takes a path and a BT and returns the number found
+   by following the path through the BT, or =nil= if the path is not present in
+   the BT.
+7. Design three functions which takes a BT and returns a list of the numbers
+   occurring in the BT
+   1. from left to right
+   2. in depth-first search order
+   3. in breadth-first search order
+
+* S-expressions
+An /atom/ is either a number, a symbol, a string or a Boolean. An
+/s-expression/ is either an atom or a list of atoms.
+
+Make some examples of s-expressions.
+
+1. Design a function which takes an s-expression and returns a list of all of
+   the strings it contains.
+2. Design a function which takes an s-expression and returns the sum of all the
+   numbers occurring in it.
+3. Design a function which takes an s-expression and simplifies any arithmetic
+   expression occurring in it.
