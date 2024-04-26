@@ -60,6 +60,13 @@
       (is (equalp t (search-bst (make-bst '(1 2 3)) 2)))
       (is (equalp nil (search-bst (make-bst '(2 1 4 3 5)) 6)))
       (is (equalp t (search-bst (make-bst '(2 1 4 3 5)) 3))))
+
+(test test-path-ton
+      (is (equalp '() (path-ton (make-bst '()) 2)))
+      (is (equalp '("right") (path-ton (make-bst '(1 2 3)) 2)))
+      (is (equalp '("right" "right") (path-ton (make-bst '(2 1 4 3 5)) 5)))
+      (is (equalp '("right" "left") (path-ton (make-bst '(2 1 4 3 5)) 3))))
+
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))

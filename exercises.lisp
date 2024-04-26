@@ -116,8 +116,18 @@
                ((< (node-value bst) n) (search-bst (node-right bst) n))
                ((> (node-value bst) n) (search-bst (node-left bst) n)))
          )))
+
 ;;;; 4. Design a function which takes a number and a BST and returns a path
 ;;;;    describing the route from the root of the BST to the number if the number is present in the BST, or nil if it is not.
+(defun path-ton (bst n)
+  (cond ((null bst) '())
+        ((node-p bst)
+         (cond ((= (node-value bst) n) '())
+               ((< (node-value bst) n) (cons "right" (path-ton (node-right bst) n)))
+               ((> (node-value bst) n) (cons "left" (path-ton (node-left bst) n)))
+               ))
+        )
+
 ;;;; 5. Design a function which takes a number and a BT and returns a path
 ;;;;    describing the route from the root of the BT to the number if the number is present in the BT, or nil if it is not.
 ;;;; 6. Design a function which takes a path and a BT and returns the number
@@ -131,3 +141,4 @@
 ;;;; 1. Design a function which takes an s-expression and returns a list of all of the strings it contains.
 ;;;; 2. Design a function which takes an s-expression and returns the sum of all the numbers occurring in it.
 ;;;; 3. Design a function which takes an s-expression and simplifies any arithmetic expression occurring in it.
+  )
