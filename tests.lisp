@@ -38,6 +38,16 @@
                                                                  :right (make-node :value 4)))) (make-bst '(1 2 3 4))))
       )
 
+(test test-list-smaller
+      (is (equalp '(3 2 1) (list-smaller '(3 4 5 2 1) 4)))
+      (is (equalp '() (list-smaller '(3 4 5 2 1) 1)))
+      (is (equalp '(1) (list-smaller '(1 3) 2))))
+
+(test test-list-bigger
+      (is (equalp '(5) (list-bigger '(3 4 5 2 1) 4)))
+      (is (equalp '() (list-bigger '(3 4 5 2 1) 5)))
+      (is (equalp '(3) (list-bigger '(1 3) 2))))
+
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))

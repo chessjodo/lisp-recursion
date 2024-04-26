@@ -72,8 +72,34 @@
         ((null ns) ns)
         ((< 0 n) (dropn (rest ns) (- n 1))))
   )
+
 ;;;; BINARY TREES
+(deftype bt () '(or node null))
+
+(defstruct node
+  (value  nil :type fixnum)
+  (left   nil :type bt)
+  (right  nil :type bt))
+;;;; A path is a list containing only the symbols left and right, and ending with the symbol t
+
 ;;;; 1. Design a function which takes a list of integers and returns a BST containing those integers.
+(defun make-bst (ns)
+  (cond ((null ns) nil)
+        ((consp ns) (make-node :value (first ns)
+                               :left (make-bst (list-smaller (rest ns) (first ns)))
+                               :right (make-bst (list-bigger (rest ns) (first ns)))))
+        ))
+
+(defun list-bigger (ns n)
+  (cond ((null ns) '())
+        ((consp ns)
+         (if (< n (first ns)) (cons (first ns) (list-bigger (rest ns) n)) (list-bigger (rest ns) n)))))
+
+(defun list-smaller (ns n)
+  (cond ((null ns) '())
+        ((consp ns)
+         (if (> n (first ns)) (cons (first ns) (list-smaller (rest ns) n)) (list-smaller (rest ns) n)))))
+
 ;;;; 2. Design a function which takes a number and a BT and determines whether the number is present in the BT.
 ;;;; 3. Design a function which takes a number and a BST and determines whether the number is present in the BST.
 ;;;; 4. Design a function which takes a number and a BST and returns a path
