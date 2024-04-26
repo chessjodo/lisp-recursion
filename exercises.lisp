@@ -34,4 +34,16 @@
         ((> 0 (first ns)) (pos-list (rest ns)))
         ((<= 0 (first ns)) (cons (first ns) (pos-list (rest ns)))))
   )
-;;;; 5. Design a merge function which consumes two lists of numbers, both sorted in ascending order. It produces a single sorted list of numbers that contains all the numbers on both inputs lists. A number occurs in the output as many times as it occurs on the two input lists together.
+
+;;;; 5. Design a merge function which consumes two lists of numbers,
+;;;;    both sorted in ascending order. It produces a single sorted list of
+;;;;    numbers that contains all the numbers on both inputs lists.
+;;;;    A number occurs in the output as many times as it occurs on the two
+;;;;    input lists together.
+(defun merge-list (ans bns)
+  (cond ((null ans) bns)
+        ((null bns) ans)
+        ((< (first ans) (first bns)) (cons (first ans) (merge-list (rest ans) bns)))
+        ((>= (first ans) (first bns)) (cons (first bns) (merge-list ans (rest bns))))
+        )
+  )

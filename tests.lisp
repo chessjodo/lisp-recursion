@@ -46,3 +46,9 @@
       (is (equalp '() (pos-list '(-1))))
       (is (equalp '(0 1) (pos-list '(0 1))))
       )
+(test test-merge-list
+      (is (equalp '() (merge-list '() '())))
+      (is (equalp '(1 2) (merge-list '(1) '(2))))
+      (is (equalp '(1 2 3) (merge-list '(1 2) '(3))))
+      (is (equalp '(1 2 2 3 3 4) (merge-list '(1 2 3) '(2 3 4))))
+      )
