@@ -67,7 +67,11 @@
   )
 
 ;;;; 4. Design drop which takes a list and a counting number, n and returns the list gotten by dropping the first n elements of the input list.
-
+(defun dropn (ns n)
+  (cond ((= 0 n) ns)
+        ((null ns) ns)
+        ((< 0 n) (dropn (rest ns) (- n 1))))
+  )
 ;;;; BINARY TREES
 ;;;; 1. Design a function which takes a list of integers and returns a BST containing those integers.
 ;;;; 2. Design a function which takes a number and a BT and determines whether the number is present in the BT.

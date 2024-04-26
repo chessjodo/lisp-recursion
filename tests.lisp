@@ -36,6 +36,12 @@
       (is (equalp '(3 2 4 5) (firstn '(3 2 4 5 7 6) 4)))
       )
 
+(test test-dropn
+      (is (equalp '() (dropn '() 0)))
+      (is (equalp '() (dropn '() 3)))
+      (is (equalp '(2 3) (dropn '(1 2 3) 1)))
+      (is (equalp '(7 6) (dropn '(3 2 4 5 7 6) 4)))
+      )
 ;;;; LIST TESTS
 (test test-sum-list
       (is (= 0 (sum-list '())))
