@@ -50,10 +50,16 @@
 
 (test test-search-bt
       (is (equalp nil (search-bt (make-bst '()) 2)))
-      (is (equalp t (search-bt (make-bst '(1 2 3)) 2)))
+      (is (equalp t (search-bt (make-bst '(5 2 3)) 2)))
       (is (equalp nil (search-bt (make-bst '(2 1 4 3 5)) 6)))
       (is (equalp t (search-bt (make-bst '(2 1 4 3 5)) 3)))
       )
+
+(test test-search-bst
+      (is (equalp nil (search-bst (make-bst '()) 2)))
+      (is (equalp t (search-bst (make-bst '(1 2 3)) 2)))
+      (is (equalp nil (search-bst (make-bst '(2 1 4 3 5)) 6)))
+      (is (equalp t (search-bst (make-bst '(2 1 4 3 5)) 3))))
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))

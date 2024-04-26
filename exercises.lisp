@@ -107,7 +107,15 @@
          (cond ((= (node-value bt) n) t)
                (t (or (search-bt (node-right bt) n) (search-bt (node-left bt) n))))))
   )
+
 ;;;; 3. Design a function which takes a number and a BST and determines whether the number is present in the BST.
+(defun search-bst (bst n)
+  (cond ((null bst) nil)
+        ((node-p bst)
+         (cond ((= (node-value bst) n) t)
+               ((< (node-value bst) n) (search-bst (node-right bst) n))
+               ((> (node-value bst) n) (search-bst (node-left bst) n)))
+         )))
 ;;;; 4. Design a function which takes a number and a BST and returns a path
 ;;;;    describing the route from the root of the BST to the number if the number is present in the BST, or nil if it is not.
 ;;;; 5. Design a function which takes a number and a BT and returns a path
