@@ -14,6 +14,30 @@
       (is (= 2 (fact 2)))
       (is (= 24 (fact 4)))
       (is (= 3628800 (fact 10))))
+;;;; BST TESTS
+(test test-make-bst
+      (is (equalp nil (make-bst '())))
+      (is (equalp (make-node :value 1
+                             :right (make-node :value 2
+                                               :right (make-node :value 3)))
+                  (make-bst '(1 2 3))))
+      (is (equalp (make-node :value 2
+                             :left (make-node :value 1)
+                             :right (make-node :value 3))
+                  (make-bst '(2 1 3))))
+      (is (equalp (make-node :value 2
+                             :left (make-node :value 1)
+                             :right (make-node :value 4
+                                               :left (make-node :value 3)
+                                               :right (make-node :value 6
+                                                                 :left (make-node :value 5))))
+                  (make-bst '(2 4 6 3 5 1))))
+      (is (equalp (make-node :value 1
+                             :right (make-node :value 2
+                                               :right (make-node :value 3
+                                                                 :right (make-node :value 4)))) (make-bst '(1 2 3 4))))
+      )
+
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))
