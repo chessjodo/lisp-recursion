@@ -8,3 +8,7 @@
   (if (zerop n)
       1
       (* n (fact (1- n)))))
+
+(defun sum-list (ns)
+  (if (null ns) 0
+      (+ (first ns) (sum-list (rest ns)))))
