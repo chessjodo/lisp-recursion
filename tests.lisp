@@ -28,6 +28,14 @@
       (is (equalp '(1 4 9 16) (nsquares-from 4 1)))
       (is (equalp '(9 16 25 36 49) (nsquares-from 5 3)))
       )
+
+(test test-firstn
+      (is (equalp '() (firstn '() 0)))
+      (is (equalp '() (firstn '() 3)))
+      (is (equalp '(1) (firstn '(1 2 3) 1)))
+      (is (equalp '(3 2 4 5) (firstn '(3 2 4 5 7 6) 4)))
+      )
+
 ;;;; LIST TESTS
 (test test-sum-list
       (is (= 0 (sum-list '())))

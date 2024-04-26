@@ -58,7 +58,14 @@
 (defun nsquares-from (length start)
   (cond ((= 0 length) '())
         ((< 0 length) (cons (* start start) (nsquares-from (- length 1) (+ start 1))))))
+
 ;;;; 3. Design take which takes a list and a counting number, n and returns the list consisting of the first n elements of the input list
+(defun firstn (ns n)
+  (cond ((= 0 n) '())
+        ((null ns) '())
+        ((< 0 n) (cons (first ns) (firstn (rest ns) (- n 1)))))
+  )
+
 ;;;; 4. Design drop which takes a list and a counting number, n and returns the list gotten by dropping the first n elements of the input list.
 
 ;;;; BINARY TREES

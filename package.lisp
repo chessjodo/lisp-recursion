@@ -5,4 +5,4 @@
 (defpackage :recursion-exercises
   (:use :cl)
   (:export :fact :sum-list :double-list :largest-list :pos-list :merge-list
-           :rep-ntimes :nsquares-from))
+           :rep-ntimes :nsquares-from :firstn))
