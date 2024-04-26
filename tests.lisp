@@ -36,3 +36,13 @@
       (is (= 3 (largest-list '(3 2 1))))
       (is (= 3 (largest-list '(2 3 3))))
       (is (= 5 (largest-list '(2 3 4 4 5)))))
+
+(test test-pos-list
+      (is (equalp '() (pos-list '())))
+      (is (equalp '(1 2 3) (pos-list '(1 2 3))))
+      (is (equalp '(1 2 3) (pos-list '(-1 1 2 3))))
+      (is (equalp '(1 2 3) (pos-list '(1 -1 2 3))))
+      (is (equalp '(1 2 3) (pos-list '(1 2 -3 3 -2))))
+      (is (equalp '() (pos-list '(-1))))
+      (is (equalp '(0 1) (pos-list '(0 1))))
+      )

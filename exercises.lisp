@@ -27,5 +27,11 @@
         ((consp ns)
          (let ((result (largest-list (rest ns))))
            (if (< result (first ns)) (first ns) result)))))
+
 ;;;; 4. Return the sub-list of the input list which contains only positive numbers.
+(defun pos-list (ns)
+  (cond ((null ns) '())
+        ((> 0 (first ns)) (pos-list (rest ns)))
+        ((<= 0 (first ns)) (cons (first ns) (pos-list (rest ns)))))
+  )
 ;;;; 5. Design a merge function which consumes two lists of numbers, both sorted in ascending order. It produces a single sorted list of numbers that contains all the numbers on both inputs lists. A number occurs in the output as many times as it occurs on the two input lists together.
