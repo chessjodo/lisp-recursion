@@ -47,3 +47,29 @@
         ((>= (first ans) (first bns)) (cons (first bns) (merge-list ans (rest bns))))
         )
   )
+
+;;;; COUNTING NUMBERS
+;;;; 1. Generalise hos to a function that can produce a given number of ha's or hi's or indeed any other symbol desired.
+;;;; 2. Design a function that returns a list of squares of a given length starting from a given number.
+;;;; 3. Design take which takes a list and a counting number, n and returns the list consisting of the first n elements of the input list
+;;;; 4. Design drop which takes a list and a counting number, n and returns the list gotten by dropping the first n elements of the input list.
+
+;;;; BINARY TREES
+;;;; 1. Design a function which takes a list of integers and returns a BST containing those integers.
+;;;; 2. Design a function which takes a number and a BT and determines whether the number is present in the BT.
+;;;; 3. Design a function which takes a number and a BST and determines whether the number is present in the BST.
+;;;; 4. Design a function which takes a number and a BST and returns a path
+;;;;    describing the route from the root of the BST to the number if the number is present in the BST, or nil if it is not.
+;;;; 5. Design a function which takes a number and a BT and returns a path
+;;;;    describing the route from the root of the BT to the number if the number is present in the BT, or nil if it is not.
+;;;; 6. Design a function which takes a path and a BT and returns the number
+;;;;    found by following the path through the BT, or nil if the path is not present in the BT.
+;;;; 7. Design three functions which takes a BT and returns a list of the numbers occurring in the BT
+;;;; 7a. from left to right
+;;;; 7b. in depth-first search order
+;;;; 7c. in breadth-first search order
+
+;;;; S-Expressions
+;;;; 1. Design a function which takes an s-expression and returns a list of all of the strings it contains.
+;;;; 2. Design a function which takes an s-expression and returns the sum of all the numbers occurring in it.
+;;;; 3. Design a function which takes an s-expression and simplifies any arithmetic expression occurring in it.
