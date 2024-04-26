@@ -14,7 +14,14 @@
       (is (= 2 (fact 2)))
       (is (= 24 (fact 4)))
       (is (= 3628800 (fact 10))))
-
+;;;; COUNTING NUMBERS TESTS
+(test test-rep-ntimes
+      (is (equalp '() (rep-ntimes "ho" 0)))
+      (is (equalp '("ho" "ho" "ho") (rep-ntimes "ho" 3)))
+      (is (equalp '("hello" "hello") (rep-ntimes "hello" 2)))
+      (is (equalp '("hi" "hi" "hi" "hi" "hi") (rep-ntimes "hi" 5)))
+      )
+;;;; LIST TESTS
 (test test-sum-list
       (is (= 0 (sum-list '())))
       (is (= 6 (sum-list '(1 2 3))))

@@ -50,6 +50,9 @@
 
 ;;;; COUNTING NUMBERS
 ;;;; 1. Generalise hos to a function that can produce a given number of ha's or hi's or indeed any other symbol desired.
+(defun rep-ntimes (symbol n)
+  (cond ((= 0 n) '())
+        ((< 0 n) (cons symbol (rep-ntimes symbol (- n 1))))))
 ;;;; 2. Design a function that returns a list of squares of a given length starting from a given number.
 ;;;; 3. Design take which takes a list and a counting number, n and returns the list consisting of the first n elements of the input list
 ;;;; 4. Design drop which takes a list and a counting number, n and returns the list gotten by dropping the first n elements of the input list.
