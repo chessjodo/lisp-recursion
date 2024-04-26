@@ -4,4 +4,4 @@
 
 (defpackage :recursion-exercises
   (:use :cl)
-  (:export :fact :sum-list))
+  (:export :fact :sum-list :double-list))

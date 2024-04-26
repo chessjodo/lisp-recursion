@@ -21,3 +21,11 @@
       (is (= 2 (sum-list '(1 1))))
       (is (= 4 (sum-list '(3 1))))
       (is (= 10 (sum-list '(1 1 1 1 4 2)))))
+
+(test test-double-list
+      (is (equalp '() (double-list '())))
+      (is (equalp '(0) (double-list '(0))))
+      (is (equalp '(2 4 6) (double-list '(1 2 3))))
+      (is (equalp '(2 2) (double-list '(1 1))))
+      (is (equalp '(6 2) (double-list '(3 1))))
+      (is (equalp '(2 2 2 2 8 4) (double-list '(1 1 1 1 4 2)))))
