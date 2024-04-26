@@ -48,6 +48,12 @@
       (is (equalp '() (list-bigger '(3 4 5 2 1) 5)))
       (is (equalp '(3) (list-bigger '(1 3) 2))))
 
+(test test-search-bt
+      (is (equalp nil (search-bt (make-bst '()) 2)))
+      (is (equalp t (search-bt (make-bst '(1 2 3)) 2)))
+      (is (equalp nil (search-bt (make-bst '(2 1 4 3 5)) 6)))
+      (is (equalp t (search-bt (make-bst '(2 1 4 3 5)) 3)))
+      )
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))

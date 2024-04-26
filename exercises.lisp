@@ -101,6 +101,12 @@
          (if (> n (first ns)) (cons (first ns) (list-smaller (rest ns) n)) (list-smaller (rest ns) n)))))
 
 ;;;; 2. Design a function which takes a number and a BT and determines whether the number is present in the BT.
+(defun search-bt (bt n)
+  (cond ((null bt) nil)
+        ((node-p bt)
+         (cond ((= (node-value bt) n) t)
+               (t (or (search-bt (node-right bt) n) (search-bt (node-left bt) n))))))
+  )
 ;;;; 3. Design a function which takes a number and a BST and determines whether the number is present in the BST.
 ;;;; 4. Design a function which takes a number and a BST and returns a path
 ;;;;    describing the route from the root of the BST to the number if the number is present in the BST, or nil if it is not.
