@@ -21,6 +21,13 @@
       (is (equalp '("hello" "hello") (rep-ntimes "hello" 2)))
       (is (equalp '("hi" "hi" "hi" "hi" "hi") (rep-ntimes "hi" 5)))
       )
+
+(test test-nsquares-from
+      (is (equalp '() (nsquares-from 0 4)))
+      (is (equalp '(1) (nsquares-from 1 1)))
+      (is (equalp '(1 4 9 16) (nsquares-from 4 1)))
+      (is (equalp '(9 16 25 36 49) (nsquares-from 5 3)))
+      )
 ;;;; LIST TESTS
 (test test-sum-list
       (is (= 0 (sum-list '())))

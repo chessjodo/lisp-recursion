@@ -53,7 +53,11 @@
 (defun rep-ntimes (symbol n)
   (cond ((= 0 n) '())
         ((< 0 n) (cons symbol (rep-ntimes symbol (- n 1))))))
+
 ;;;; 2. Design a function that returns a list of squares of a given length starting from a given number.
+(defun nsquares-from (length start)
+  (cond ((= 0 length) '())
+        ((< 0 length) (cons (* start start) (nsquares-from (- length 1) (+ start 1))))))
 ;;;; 3. Design take which takes a list and a counting number, n and returns the list consisting of the first n elements of the input list
 ;;;; 4. Design drop which takes a list and a counting number, n and returns the list gotten by dropping the first n elements of the input list.
 
