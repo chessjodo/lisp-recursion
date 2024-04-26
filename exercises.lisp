@@ -22,5 +22,10 @@
         ((consp ns) (cons (* 2 (first ns)) (double-list (rest ns))))))
 
 ;;;; 3. Find the largest number in the list.
+(defun largest-list (ns)
+  (cond ((null ns) 0)
+        ((consp ns)
+         (let ((result (largest-list (rest ns))))
+           (if (< result (first ns)) (first ns) result)))))
 ;;;; 4. Return the sub-list of the input list which contains only positive numbers.
 ;;;; 5. Design a merge function which consumes two lists of numbers, both sorted in ascending order. It produces a single sorted list of numbers that contains all the numbers on both inputs lists. A number occurs in the output as many times as it occurs on the two input lists together.

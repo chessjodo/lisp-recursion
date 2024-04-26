@@ -29,3 +29,10 @@
       (is (equalp '(2 2) (double-list '(1 1))))
       (is (equalp '(6 2) (double-list '(3 1))))
       (is (equalp '(2 2 2 2 8 4) (double-list '(1 1 1 1 4 2)))))
+
+(test test-largest-list
+      (is (= 0 (largest-list '(0))))
+      (is (= 3 (largest-list '(1 2 3))))
+      (is (= 3 (largest-list '(3 2 1))))
+      (is (= 3 (largest-list '(2 3 3))))
+      (is (= 5 (largest-list '(2 3 4 4 5)))))
