@@ -63,10 +63,24 @@
 
 (test test-path-ton
       (is (equalp '() (path-ton (make-bst '()) 2)))
-      (is (equalp '("right") (path-ton (make-bst '(1 2 3)) 2)))
-      (is (equalp '("right" "right") (path-ton (make-bst '(2 1 4 3 5)) 5)))
-      (is (equalp '("right" "left") (path-ton (make-bst '(2 1 4 3 5)) 3))))
+      (is (equalp '(right t) (path-ton (make-bst '(1 2 3)) 2)))
+      (is (equalp '(right right t) (path-ton (make-bst '(2 1 4 3 5)) 5)))
+      (is (equalp '(right left t) (path-ton (make-bst '(2 1 4 3 5)) 3))))
 
+(test test-bt-path-ton
+      (is (equalp '() (bt-path-ton (make-bst '()) 2)))
+      (is (equalp '(right) (bt-path-ton (make-node :value 1
+                                                   :right (make-node :value 3)
+                                                   :left (make-node :value 2)) 3)))
+      (is (equalp '(right left) (bt-path-ton (make-node :value 3
+                                                        :right (make-node :value 1
+                                                                          :right (make-node :value 5)
+                                                                          :left (make-node :value 6))
+                                                        :left (make-node :value 4)) 6)))
+      )
+(test test-cons-to-end
+      (is (equalp '(right) (cons-to-end '() 'right)))
+      (is (equalp '(right left) (cons-to-end '(right) 'left))))
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))
