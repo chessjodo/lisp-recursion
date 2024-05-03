@@ -97,6 +97,12 @@
       (is (equalp '(1 2 3 4 5) (combine-lists '(1 2 3) '(4 5))))
       (is (equalp '(1 2 3) (combine-lists '(1) '(2 3)))))
 
+(test test-bt-depth-first
+      (is (equalp '(2 1 3) (bt-depth-first (make-bst '(2 1 3)))))
+      (is (equalp '() (bt-depth-first '())))
+      (is (equalp '(4 2 1 3 6 5 7) (bt-depth-first (make-bst '(4 2 1 3 6 5 7)))))
+      )
+
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))

@@ -169,6 +169,11 @@
   )
 
 ;;;; 7b. in depth-first search order
+(defun bt-depth-first (bt)
+  (cond ((null bt) '())
+        ((node-p bt) (cons (node-value bt) (combine-lists (bt-depth-first (node-left bt)) (bt-depth-first (node-right bt)) ))))
+  )
+
 ;;;; 7c. in breadth-first search order
 
 ;;;; S-Expressions
