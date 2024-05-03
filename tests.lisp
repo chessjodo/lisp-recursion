@@ -87,6 +87,16 @@
       (is (= 3 (follow-path (make-bst '(2 1 3)) (path-ton (make-bst '(2 1 3)) 3))))
       (is (equalp nil (follow-path (make-bst '(2 1 3)) (path-ton (make-bst '(2 1 3)) 4))))
       (is (= 3 (follow-path (make-bst '(2 4 1 5 3)) (path-ton (make-bst '(2 4 1 5 3)) 3)))))
+
+(test test-bt-ltor
+      (is (equalp '(1 2 3) (bt-ltor (make-bst '(2 1 3)))))
+      (is (equalp '() (bt-ltor '())))
+      )
+
+(test test-combine-lists
+      (is (equalp '(1 2 3 4 5) (combine-lists '(1 2 3) '(4 5))))
+      (is (equalp '(1 2 3) (combine-lists '(1) '(2 3)))))
+
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))

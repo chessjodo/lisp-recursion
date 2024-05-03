@@ -157,6 +157,17 @@
 
 ;;;; 7. Design three functions which takes a BT and returns a list of the numbers occurring in the BT
 ;;;; 7a. from left to right
+(defun bt-ltor (bt)
+  (cond ((null bt) '())
+        ((node-p bt) (combine-lists (bt-ltor (node-left bt)) (cons (node-value bt) (bt-ltor (node-right bt))))))
+  )
+
+;;;; Takes two lists and combines the two into one big list
+(defun combine-lists (l1 l2)
+  (cond ((null l1) l2)
+        ((consp l1) (cons (first l1) (combine-lists (rest l1) l2))))
+  )
+
 ;;;; 7b. in depth-first search order
 ;;;; 7c. in breadth-first search order
 
