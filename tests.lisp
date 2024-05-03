@@ -81,6 +81,12 @@
 (test test-cons-to-end
       (is (equalp '(right) (cons-to-end '() 'right)))
       (is (equalp '(right left) (cons-to-end '(right) 'left))))
+
+(test test-follow-path
+      (is (= 5 (follow-path (make-bst '(2 1 3 4 5)) (path-ton (make-bst '(2 1 3 4 5)) 5))))
+      (is (= 3 (follow-path (make-bst '(2 1 3)) (path-ton (make-bst '(2 1 3)) 3))))
+      (is (equalp nil (follow-path (make-bst '(2 1 3)) (path-ton (make-bst '(2 1 3)) 4))))
+      (is (= 3 (follow-path (make-bst '(2 4 1 5 3)) (path-ton (make-bst '(2 4 1 5 3)) 3)))))
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))

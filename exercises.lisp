@@ -90,11 +90,13 @@
                                :right (make-bst (list-bigger (rest ns) (first ns)))))
         ))
 
+;;;; Takes a list and a number and returns a list with all the numbers in the list that are bigger than the number
 (defun list-bigger (ns n)
   (cond ((null ns) '())
         ((consp ns)
          (if (< n (first ns)) (cons (first ns) (list-bigger (rest ns) n)) (list-bigger (rest ns) n)))))
 
+;;;; Takes a list and a number and returns a list with all the numbers in the list that are smaller than the number
 (defun list-smaller (ns n)
   (cond ((null ns) '())
         ((consp ns)
@@ -128,10 +130,6 @@
                ))
         ))
 
-(defun cons-to-end (list n)
-  (cond ((null list) (cons n '()))
-        ((consp list) (cons (first list) (cons-to-end (rest list) n)))))
-
 ;;;; 5. Design a function which takes a number and a BT and returns a path
 ;;;;    describing the route from the root of the BT to the number if the number
 ;;;;    is present in the BT, or nil if it is not.
@@ -142,8 +140,21 @@
 
                (t (or (bt-path-ton (node-right bt) n (cons-to-end path 'right)) (bt-path-ton (node-left bt) n (cons-to-end path 'left)))))))
   )
+
+;;;; Takes a list and an element and returns a list where the element is added to the end of that list
+(defun cons-to-end (list n)
+  (cond ((null list) (cons n '()))
+        ((consp list) (cons (first list) (cons-to-end (rest list) n)))))
+
 ;;;; 6. Design a function which takes a path and a BT and returns the number
 ;;;;    found by following the path through the BT, or nil if the path is not present in the BT.
+(defun follow-path (bt path)
+  (cond ((null bt) nil)
+        ((equalp path (cons t '())) (node-value bt))
+        ((consp path)
+         (cond ((equalp (first path) 'right) (follow-path (node-right bt) (rest path)))
+               ((equalp (first path) 'left) (follow-path (node-left bt) (rest path)))))))
+
 ;;;; 7. Design three functions which takes a BT and returns a list of the numbers occurring in the BT
 ;;;; 7a. from left to right
 ;;;; 7b. in depth-first search order
