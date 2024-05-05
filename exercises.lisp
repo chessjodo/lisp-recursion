@@ -177,8 +177,15 @@
 
 ;;;; 7c. in breadth-first search order
 
+(defun bt-bfs (queue)
+  (cond ((null queue) '())
+        ((typep queue 'bt) (bt-bfs (list queue)))
+        ((list queue)
+         (combine-lists (print-queue queue) (bt-bfs (get-children queue)))))
+  )
+
 (defun print-queue (queue)
-  (cond ((null queue) nil)
+  (cond ((null queue) '())
         ((consp queue)
          (cons (node-value (first queue)) (print-queue (rest queue)))))
   )

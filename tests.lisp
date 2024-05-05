@@ -166,6 +166,12 @@
                                                  :left (make-node :value 2)
                                                  :right (make-node :value 3)) (make-node :value 5
                                                  :right (make-node :value 4 :right (make-node :value 6))))))))
+
+(test test-bt-bfs
+      (is (equalp '(2 1 3) (bt-bfs (make-bst '(2 1 3)))))
+      (is (equalp '() (bt-bfs '())))
+      (is (equalp '(4 2 6 1 3 5 7) (bt-bfs (make-bst '(4 2 1 3 6 5 7)))))
+      )
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))
