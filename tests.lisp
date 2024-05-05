@@ -37,6 +37,15 @@
       (is (equalp t (check-symbol '-)))
       (is (equalp t (check-symbol '/)))
       (is (equalp t (check-symbol '*))))
+
+(test test-evaluate-arithmetic
+      (is (equalp '(5 t) (evaluate-arithmetic 2 '+ 3)))
+      (is (equalp '(3 t) (evaluate-arithmetic 0 '+ 3)))
+      (is (equalp '(6 t) (evaluate-arithmetic 2 '* 3)))
+      (is (equalp '(-1 t) (evaluate-arithmetic 2 '- 3)))
+      (is (equalp '(2 t) (evaluate-arithmetic 6 '/ 3)))
+      (is (equalp '(2/3 t) (evaluate-arithmetic 2 '/ 3)))
+      )
 ;;;; BST TESTS
 (test test-make-bst
       (is (equalp nil (make-bst '())))
