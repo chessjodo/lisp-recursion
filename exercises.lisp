@@ -177,6 +177,18 @@
 ;;;; 7c. in breadth-first search order
 
 ;;;; S-Expressions
+;;;; An atom is either a number, a symbol, a string or a Boolean.
+;;;; An s-expression is either an atom or a list of atoms.
+(deftype matom () '(or number symbol string boolean))
+(deftype msxp () '(or matom (list matom)))
+
 ;;;; 1. Design a function which takes an s-expression and returns a list of all of the strings it contains.
+(defun get-strings (sx)
+  (cond ((typep sx 'matom)
+         (cond ((typep sx 'string) (cons sx '()))
+               (t '())))
+        ((list sx) (combine-lists (get-strings (first sx)) (get-strings (rest sx)))))
+  )
+
 ;;;; 2. Design a function which takes an s-expression and returns the sum of all the numbers occurring in it.
 ;;;; 3. Design a function which takes an s-expression and simplifies any arithmetic expression occurring in it.

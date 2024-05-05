@@ -14,6 +14,15 @@
       (is (= 2 (fact 2)))
       (is (= 24 (fact 4)))
       (is (= 3628800 (fact 10))))
+
+;;;; S-EXP TESTS
+(test test-get-strings
+      (is (equalp '() (get-strings 5)))
+      (is (equalp '("string1") (get-strings "string1")))
+      (is (equalp '("string1") (get-strings '(5 "string1"))))
+      (is (equalp '("string1" "string2" "string3") (get-strings '(5 "string1" "string2" "string3"))))
+      (is (equalp '("string1") (get-strings '(5 "string1" t 's1)))))
+
 ;;;; BST TESTS
 (test test-make-bst
       (is (equalp nil (make-bst '())))
