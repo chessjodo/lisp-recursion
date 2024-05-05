@@ -60,7 +60,8 @@
       (is (equalp '(2 '+ "string2" "string1") (simplify-arithmetic '(2 '+ "string2" "string1"))))
       (is (equalp '(6 t "string1") (simplify-arithmetic '(2 '* 3 t "string1"))))
       (is (equalp '(t "string0" 5 "string1") (simplify-arithmetic '(t "string0" 2 '+ 3 "string1"))))
-      (is (equalp '('symb1 2 'symb2 3 "string1") (simplify-arithmetic '('symb1 2 'symb2 3 "string1")))))
+      (is (equalp '('symb1 2 'symb2 3 "string1") (simplify-arithmetic '('symb1 2 'symb2 3 "string1"))))
+      (is (equalp '(20) (simplify-arithmetic '(2 '+ 3 '* 4)))))
 ;;;; BST TESTS
 (test test-make-bst
       (is (equalp nil (make-bst '())))

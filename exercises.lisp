@@ -201,7 +201,7 @@
   (cond ((typep sx 'matom) sx)
         ((list sx)
          (let ((result (check-arithmetic sx)))
-           (cond ((equalp (rest result) '(t)) (cons (first result) (simplify-arithmetic (rest (rest (rest sx))))))
+           (cond ((equalp (rest result) '(t)) (simplify-arithmetic (cons (first result) (rest (rest (rest sx))))))
                  ((equalp result sx) (cons (first sx) (simplify-arithmetic (rest sx))))))))
   )
 
