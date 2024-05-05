@@ -11,4 +11,5 @@
            :right :t :cons-to-end :follow-path :bt-ltor :combine-lists
            :bt-depth-first :matom :msxp :matom-p :make-matom :make-msxp :msxp-p
            :get-strings :get-sum-sx :check-arithmetic :check-symbol
-           :evaluate-arithmetic :simplify-arithmetic))
+           :evaluate-arithmetic :simplify-arithmetic :print-queue :get-children
+           ))

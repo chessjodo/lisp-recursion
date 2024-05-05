@@ -171,10 +171,31 @@
 ;;;; 7b. in depth-first search order
 (defun bt-depth-first (bt)
   (cond ((null bt) '())
-        ((node-p bt) (cons (node-value bt) (combine-lists (bt-depth-first (node-left bt)) (bt-depth-first (node-right bt)) ))))
+        ((node-p bt)
+         (cons (node-value bt) (combine-lists (bt-depth-first (node-left bt)) (bt-depth-first (node-right bt)) ))))
   )
 
 ;;;; 7c. in breadth-first search order
+
+(defun print-queue (queue)
+  (cond ((null queue) nil)
+        ((consp queue)
+         (cons (node-value (first queue)) (print-queue (rest queue)))))
+  )
+
+(defun get-children (queue)
+  (cond ((null queue) '())
+        ((consp queue)
+         (cond ((null (node-left (first queue)))
+                (cond ((null (node-right (first queue)))
+                       (get-children (rest queue)))
+                      (t (cons (node-right (first queue)) (get-children (rest queue))))))
+               ((null (node-right (first queue)))
+                (cons (node-left (first queue)) (get-children (rest queue))))
+               (t (cons (node-left (first queue)) (cons (node-right (first queue)) (get-children (rest queue)))))))))
+
+
+
 
 ;;;; S-Expressions
 ;;;; An atom is either a number, a symbol, a string or a Boolean.
@@ -205,6 +226,8 @@
                  ((equalp result sx) (cons (first sx) (simplify-arithmetic (rest sx))))))))
   )
 
+;;;; Function that takes an s-expression and checks whether the following three elements form an arithmetic expression.
+;;;; If so it is evaluated, otherwise the original list s-expression is returned.
 (defun check-arithmetic (sx)
   (cond ((typep (first sx) 'number)
          (cond ((typep (eval (first (rest sx))) 'symbol)
@@ -216,6 +239,7 @@
                (t sx)))
         (t sx)))
 
+;;;; Function that takes a symbol and checks whether it is one of the 4 arithmetic symbols and returns t/nil.
 (defun check-symbol (symb)
   (cond ((equalp '+ symb) t)
         ((equalp '- symb) t)
@@ -223,6 +247,9 @@
         ((equalp '/ symb) t)
         (t nil)))
 
+;;;; Function that takes 2 numbers and a symbol and evaluates the arithmetic expression formed by combining them.
+;;;; Returns a list formed by the resul of the arithmetic followed by t, to indicate to the original function
+;;;; that an evaluation happened.
 (defun evaluate-arithmetic (n1 symb n2)
   (cond ((equalp '+ symb) (cons (+ n1 n2) '(t)))
         ((equalp '- symb) (cons (- n1 n2) '(t)))

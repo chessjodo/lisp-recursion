@@ -62,6 +62,7 @@
       (is (equalp '(t "string0" 5 "string1") (simplify-arithmetic '(t "string0" 2 '+ 3 "string1"))))
       (is (equalp '('symb1 2 'symb2 3 "string1") (simplify-arithmetic '('symb1 2 'symb2 3 "string1"))))
       (is (equalp '(20) (simplify-arithmetic '(2 '+ 3 '* 4)))))
+
 ;;;; BST TESTS
 (test test-make-bst
       (is (equalp nil (make-bst '())))
@@ -151,6 +152,20 @@
       (is (equalp '(4 2 1 3 6 5 7) (bt-depth-first (make-bst '(4 2 1 3 6 5 7)))))
       )
 
+(test test-print-queue
+      (is (equalp '(2 3 4) (print-queue (list (make-node :value 2) (make-node :value 3) (make-node :value 4))))))
+
+(test test-get-children
+      (is (equalp (list (make-node :value 2) (make-node :value 3) (make-node :value 4))
+                  (get-children (list (make-node :value 1
+                                                 :left (make-node :value 2)
+                                                 :right (make-node :value 3)) (make-node :value 5
+                                                 :right (make-node :value 4))))))
+      (is (equalp (list (make-node :value 2) (make-node :value 3) (make-node :value 4 :right (make-node :value 6)))
+                  (get-children (list (make-node :value 1
+                                                 :left (make-node :value 2)
+                                                 :right (make-node :value 3)) (make-node :value 5
+                                                 :right (make-node :value 4 :right (make-node :value 6))))))))
 ;;;; COUNTING NUMBERS TESTS
 (test test-rep-ntimes
       (is (equalp '() (rep-ntimes "ho" 0)))
