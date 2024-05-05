@@ -176,7 +176,8 @@
   )
 
 ;;;; 7c. in breadth-first search order
-
+;;;; At every step combines the "printed" current level with the recursive call
+;;;; of the level below by using the get-children function to jump down a level
 (defun bt-bfs (queue)
   (cond ((null queue) '())
         ((typep queue 'bt) (bt-bfs (list queue)))
@@ -184,12 +185,14 @@
          (combine-lists (print-queue queue) (bt-bfs (get-children queue)))))
   )
 
+;;;; Function that returns a list of the values of all the nodes in a queue
 (defun print-queue (queue)
   (cond ((null queue) '())
         ((consp queue)
          (cons (node-value (first queue)) (print-queue (rest queue)))))
   )
 
+;;;; Function that returns a list of the children of the nodes in a queue
 (defun get-children (queue)
   (cond ((null queue) '())
         ((consp queue)
