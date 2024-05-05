@@ -30,6 +30,13 @@
       (is (= 10 (get-sum-sx '(5 "string1" 2 "string2" 3 "string3"))))
       (is (= 17 (get-sum-sx '(5 "string1" t 's1 12)))))
 
+(test test-check-symbol
+      (is (equalp nil (check-symbol 'ant)))
+      (is (equalp nil (check-symbol 'a)))
+      (is (equalp t (check-symbol '+)))
+      (is (equalp t (check-symbol '-)))
+      (is (equalp t (check-symbol '/)))
+      (is (equalp t (check-symbol '*))))
 ;;;; BST TESTS
 (test test-make-bst
       (is (equalp nil (make-bst '())))
