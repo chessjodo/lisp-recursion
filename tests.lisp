@@ -46,6 +46,14 @@
       (is (equalp '(2 t) (evaluate-arithmetic 6 '/ 3)))
       (is (equalp '(2/3 t) (evaluate-arithmetic 2 '/ 3)))
       )
+
+(test test-check-arithmetic
+      (is (equalp '(5 t) (check-arithmetic '(2 '+ 3 "string1"))))
+      (is (equalp '(2 'abc 3) (check-arithmetic '(2 'abc 3))))
+      (is (equalp '('2 '* 3) (check-arithmetic '('2 '* 3))))
+      (is (equalp '(2 '* "string1" 5 '- 2) (check-arithmetic '(2 '* "string1" 5 '- 2))))
+      (is (equalp '(2/3 t) (check-arithmetic '(2 '/ 3))))
+      (is (equalp '(25 t) (check-arithmetic '(25 '- 0)))))
 ;;;; BST TESTS
 (test test-make-bst
       (is (equalp nil (make-bst '())))
