@@ -54,6 +54,13 @@
       (is (equalp '(2 '* "string1" 5 '- 2) (check-arithmetic '(2 '* "string1" 5 '- 2))))
       (is (equalp '(2/3 t) (check-arithmetic '(2 '/ 3))))
       (is (equalp '(25 t) (check-arithmetic '(25 '- 0)))))
+
+(test test-simplify-arithmetic
+      (is (equalp '(5 "string1") (simplify-arithmetic '(2 '+ 3 "string1"))))
+      (is (equalp '(2 '+ "string2" "string1") (simplify-arithmetic '(2 '+ "string2" "string1"))))
+      (is (equalp '(6 t "string1") (simplify-arithmetic '(2 '* 3 t "string1"))))
+      (is (equalp '(t "string0" 5 "string1") (simplify-arithmetic '(t "string0" 2 '+ 3 "string1"))))
+      (is (equalp '('symb1 2 'symb2 3 "string1") (simplify-arithmetic '('symb1 2 'symb2 3 "string1")))))
 ;;;; BST TESTS
 (test test-make-bst
       (is (equalp nil (make-bst '())))
