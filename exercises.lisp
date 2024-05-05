@@ -187,8 +187,13 @@
   (cond ((typep sx 'matom)
          (cond ((typep sx 'string) (cons sx '()))
                (t '())))
-        ((list sx) (combine-lists (get-strings (first sx)) (get-strings (rest sx)))))
-  )
+        ((list sx) (combine-lists (get-strings (first sx)) (get-strings (rest sx))))))
 
 ;;;; 2. Design a function which takes an s-expression and returns the sum of all the numbers occurring in it.
+(defun get-sum-sx (sx)
+  (cond ((typep sx 'matom)
+         (cond ((typep sx 'number) sx)
+               (t 0)))
+        ((list sx) (+ (get-sum-sx (first sx)) (get-sum-sx (rest sx)))))
+  )
 ;;;; 3. Design a function which takes an s-expression and simplifies any arithmetic expression occurring in it.

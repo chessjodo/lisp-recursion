@@ -10,4 +10,4 @@
            :node-left :search-bt :search-bst :path-ton :bt-path-ton :left
            :right :t :cons-to-end :follow-path :bt-ltor :combine-lists
            :bt-depth-first :matom :msxp :matom-p :make-matom :make-msxp :msxp-p
-           :get-strings))
+           :get-strings :get-sum-sx))

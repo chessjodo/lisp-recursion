@@ -23,6 +23,13 @@
       (is (equalp '("string1" "string2" "string3") (get-strings '(5 "string1" "string2" "string3"))))
       (is (equalp '("string1") (get-strings '(5 "string1" t 's1)))))
 
+(test test-get-sum-sx
+      (is (= 0 (get-sum-sx "string1")))
+      (is (= 2 (get-sum-sx 2)))
+      (is (= 5 (get-sum-sx '(5 "string1"))))
+      (is (= 10 (get-sum-sx '(5 "string1" 2 "string2" 3 "string3"))))
+      (is (= 17 (get-sum-sx '(5 "string1" t 's1 12)))))
+
 ;;;; BST TESTS
 (test test-make-bst
       (is (equalp nil (make-bst '())))
